@@ -1,0 +1,71 @@
+<div class="min-h-screen flex flex-col bg-gray-100">
+  <header class="bg-blue-600 text-white p-4">
+    <h1 class="text-2xl font-bold">Financial Tracker</h1>
+  </header>
+
+  <main class="flex-grow container mx-auto p-4">
+    <section class="bg-white rounded-lg shadow p-6 mb-6">
+      <h2 class="text-xl font-semibold mb-4">Add New Expense</h2>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <input
+          type="text"
+          [(ngModel)]="expenseName"
+          placeholder="Expense Name"
+          class="border rounded p-2 flex-grow"
+          aria-label="Expense Name"
+        />
+        <input
+          type="number"
+          [(ngModel)]="expenseValue"
+          placeholder="Expense Value"
+          class="border rounded p-2 flex-grow"
+          aria-label="Expense Value"
+        />
+        <button
+          (click)="addExpense()"
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+        >
+          Add Expense
+        </button>
+      </div>
+    </section>
+
+    <section class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Expense List</h2>
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="text-left">Expense Name</th>
+            <th class="text-left">Value</th>
+            <th class="text-left">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let expense of expenses; let i = index">
+            <td>{{ expense.name }}</td>
+            <td>${{ expense.value.toFixed(2) }}</td>
+            <td>
+              <button
+                (click)="deleteExpense(i)"
+                class="text-red-500 hover:text-red-700 transition-colors"
+                aria-label="Delete Expense"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="mt-4 text-right">
+        <strong>Total Expenses: ${{ totalExpenses.toFixed(2) }}</strong>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-200 text-center p-4 mt-auto">
+    <p>
+      &copy; 2024 Financial Tracker. All rights reserved
+      <strong>Ahmed Albsugy</strong>.
+    </p>
+  </footer>
+</div>
